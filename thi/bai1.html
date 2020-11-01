@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0px auto;
+        }
+
+        .contenner {
+            width: 420px;
+            margin-top: 50px;
+            margin-left: 300px;
+            border: 1px solid #000000;
+        }
+
+        .desc {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: darkblue;
+            margin-top: 20px;
+            color: #ffffff;
+            border: none;
+            margin-left: 150px;
+            margin-bottom: 30px;
+            width: 100px;
+            height: 40px;
+        }
+
+        .content {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenner">
+            <div class="content">
+                <div class="desc">
+                    <div class="heading"> <span>Họ Và Tên * </span></div>
+                    <div class="the"> <input type="text" id="ten" ></div>
+                </div>
+                <div class="desc">
+                    <div class="heading"><span>Nghề *</span></div>
+                    <div class="the">
+                        <input type="checkbox" id="web" ><label for="">Thiết kế Trang Web</label>
+                        <br>
+                        <input type="checkbox" id="dohoa"><label for="">Thiết Kế Đồ Họa</label>
+                        <br>
+                        <input type="checkbox" id="maytinh"><label for="">Lập Trình Máy Tính</label>
+                    </div>
+                </div>
+                <div class="desc">
+                    <div class="heading"><span>Số Điện Thoại * </span></div>
+                    <div class="the"><input type="text" id="sdt" ></div>
+                </div>
+                <button onclick="add()">Gửi Thông Tin</button>
+            </div>
+    </div>
+    <script>
+        function add() {
+            var i = 0;
+            if (ten.value.trim().length < 8) {
+                alert("moi ban nhap ho va ten lon hon 8 ki tu");
+                ten.style.backgroundColor="red";
+            } else {
+                i++;
+            }
+            if (web.checked == false && dohoa.checked == false && maytinh.checked == false) {
+                alert("ban chua chon nghe");
+            } else {
+                i++;
+            }
+            var check = /(0+[0-9]{9}\b)/g;
+            if (!check.test(sdt.value)) {
+                alert("ban nhap sai so dien thoai");
+                sdt.style.backgroundColor="red";
+            } else {
+                i++;
+            }
+            if (i == 3) {
+                alert("chuc mung ban dang nhap thanh cong");
+            }
+        }
+    </script>
+</body>
+
+</html>
