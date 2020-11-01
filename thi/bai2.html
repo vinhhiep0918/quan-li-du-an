@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #timten {
+            display: none;
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: indianred;
+            border: none;
+            width: 80px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenner">
+        <div class="header">
+            <input type="radio" name="question" id="tensv" onclick="tensinhvien()"><label for="">Tên Sinh Viên</label>
+            <input type="radio" name="question" id="diemdat" onclick="diem()"><label for="">Điểm Đạt</label>
+        </div>
+        <div class="content">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th colspan="2">Họ Và Tên</th>
+                        <th>Điểm JS1</th>
+                        <th>Điểm JS2</th>
+                        <th>Điểm Trung Bình</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyễn Văn</td>
+                        <td>Bình</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Vũ Thị</td>
+                        <td>Hạnh</td>
+                        <td>7</td>
+                        <td>7</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Trần Văn</td>
+                        <td>Bình</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="admin()">Tính Điểm</button>
+            <input type="text" placeholder="moi ban nhap ten can tim" id="timten" onblur="tim()">
+        </div>
+    </div>
+    <script>
+        var ad = document.querySelectorAll("table tbody tr");
+        function admin() {
+            for (var i = 0; i < ad.length; i++) {
+                var a = ad[i].children[5];
+                var b = ad[i].children[4].innerHTML;
+                var c = ad[i].children[3].innerHTML;
+                a.innerHTML = (Number(b) + Number(c)) / 2;
+            }
+        }
+        function tensinhvien() {
+            if (tensv.checked == true) {
+                for (var i = 0; i < ad.length; i++) {
+                    ad[i].style.backgroundColor = "#ffffff";
+                }
+                timten.style.display = "block";
+            }
+        }
+        var check = 0;
+        function tim() {
+            for (var i = 0; i < ad.length; i++) {
+                var a = ad[i].children[2].innerHTML;
+                var c = a.toLowerCase();
+                var d = timten.value.toLowerCase();
+                if (c == d) {
+                    ad[i].style.backgroundColor = "red";
+                    check=1;
+                } else {
+                    ad[i].style.backgroundColor = "#ffffff";
+                }
+            }
+            if(check==0){
+                alert("khong co ten ban muon tim");
+            }
+        }
+        function diem() {
+            if (diemdat.checked == true) {
+                timten.style.display = "none";
+                for (var i = 0; i < ad.length; i++) {
+                    var a = ad[i].children[5].innerHTML;
+                    if (Number(a) >= 5) {
+                        ad[i].style.backgroundColor = "burlywood";
+                    } else {
+                        ad[i].style.backgroundColor = "#ffffff";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
